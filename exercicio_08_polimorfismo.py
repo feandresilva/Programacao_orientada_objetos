@@ -49,6 +49,26 @@
 
 # print(df)
 
+# 7 - Modifique a classe DataFrame para incluir o método especial __getitem__.
+
+# Esse método deverá receber como parâmetro o nome de uma coluna.
+
+# O método deverá procurar a posição da coluna dentro do atributo columns 
+# e retornar uma lista contendo todos os valores dessa coluna.
+
+# Exemplo 1:
+# print(df["Nome"])
+
+# Resultado Esperado:
+# ["Alice", "Bruno", "Carla"]
+
+
+# Exemplo 2:
+# print(df["idade"])
+
+# Resultado Esperado:
+# [20, 25, 19]
+
 class DataFrame():
     columns: list
     values: list
@@ -63,6 +83,13 @@ class DataFrame():
     def __str__(self):
         return '\n'.join(map(str, [self.columns, *self.values]))
 
+    def __getitem__(self, coluna):
+        if coluna not in self.columns:
+            raise KeyError
+        index = self.columns.index(coluna)
+        return [linha[index] for linha in self.values]
+
+
 
 
 df = DataFrame(["Nome", "Idade", "Cidade"])
@@ -70,4 +97,4 @@ df.append(("Carlos", 25, "Campinas"))
 df.append(("Alice", 20, "Curitiba"))
 df.append(("Bruno", 25, "São Paulo"))
 df.append(("Carla", 19, "Recife"))
-print(df)
+print(df["Cidade"])
