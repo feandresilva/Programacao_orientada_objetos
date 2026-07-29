@@ -111,8 +111,7 @@ class DataFrame():
         return [linha[index] for linha in self.values]
 
     def to_csv(self, nome_arquivo):
-        nome_arquivo.to_csv("C:/Users/User/Documents/Curso_Python_Lucas/Programacao_orientada_objetos/arquivo_salvo.csv")
-
+        with open(nome_arquivo.csv, )
 
 df = DataFrame(["Nome", "Idade", "Cidade"])
 df.append(("Carlos", 25, "Campinas"))
