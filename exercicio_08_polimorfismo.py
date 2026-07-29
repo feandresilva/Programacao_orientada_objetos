@@ -69,6 +69,27 @@
 # Resultado Esperado:
 # [20, 25, 19]
 
+# 8 - Adicione à classe DataFrame um método chamado to_csv.
+
+# Esse método deverá receber como parâmetro o nome do arquivo 
+# e salvar os dados do DataFrame em um arquivo CSV.
+
+# A primeira linha do arquivo deverá conter os nomes das colunas, 
+# armazenados no atributo columns.
+
+# As linhas seguintes deverão conter os dados armazenados no atributo values.
+
+# Exemplo:
+
+# df.to_csv("produtos.csv")
+
+# Conteúdo esperado do arquivo:
+
+# Produto,Preço,Quantidade
+# Camiseta,50.0,2
+# Calça,120.0,3
+# Tênis,250.0,1
+
 class DataFrame():
     columns: list
     values: list
@@ -89,7 +110,8 @@ class DataFrame():
         index = self.columns.index(coluna)
         return [linha[index] for linha in self.values]
 
-
+    def to_csv(self, nome_arquivo):
+        nome_arquivo.to_csv("C:\Users\User\Documents\Curso_Python_Lucas\Programacao_orientada_objetos\arquivo_salvo.csv", index=False)
 
 
 df = DataFrame(["Nome", "Idade", "Cidade"])
