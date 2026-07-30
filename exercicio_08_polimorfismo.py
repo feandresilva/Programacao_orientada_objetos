@@ -90,7 +90,7 @@
 # Calça,120.0,3
 # Tênis,250.0,1
 
-# Crie uma função chamada read_csv.
+# 9 - Crie uma função chamada read_csv.
 
 # Essa função deverá receber como parâmetro o nome de um arquivo CSV, 
 # ler o conteúdo do arquivo e retornar um objeto da classe DataFrame.
@@ -131,6 +131,13 @@ class DataFrame():
             writer = csv.writer(nome_arquivo)
             writer.writerow(nome_arquivo)
 
+    def read_csv(self, arquivo_carregado):
+        with open("arquivo_csv", "r") as arquivo:
+            read = csv.reader(arquivo_carregado)
+            for linha in read:
+                return linha
+
+
 
 
 df = DataFrame(["Nome", "Idade", "Cidade"])
@@ -139,4 +146,6 @@ df.append(("Alice", 20, "Curitiba"))
 df.append(("Bruno", 25, "São Paulo"))
 df.append(("Carla", 19, "Recife"))
 informacoes_pessoais = df
+ler_csv = df.read_csv("nome_arquivo.csv")
 df.to_csv(informacoes_pessoais)
+print(ler_csv)
