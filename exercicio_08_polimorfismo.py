@@ -90,6 +90,20 @@
 # Calça,120.0,3
 # Tênis,250.0,1
 
+# Crie uma função chamada read_csv.
+
+# Essa função deverá receber como parâmetro o nome de um arquivo CSV, 
+# ler o conteúdo do arquivo e retornar um objeto da classe DataFrame.
+
+# Considere que a primeira linha do arquivo sempre contém os nomes das colunas. 
+# As demais linhas contêm os valores do DataFrame.
+
+# Exemplo:
+
+# df = read_csv("produtos.csv")
+
+# print(df)
+
 import csv
 
 class DataFrame():
