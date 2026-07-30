@@ -90,6 +90,8 @@
 # Calça,120.0,3
 # Tênis,250.0,1
 
+import csv
+
 class DataFrame():
     columns: list
     values: list
@@ -111,7 +113,11 @@ class DataFrame():
         return [linha[index] for linha in self.values]
 
     def to_csv(self, nome_arquivo):
-        with open(nome_arquivo.csv, )
+        with open("nome_arquivo.csv", "w", newline= '', encoding='utf-8') as nome_arquivo:
+            writer = csv.writer(nome_arquivo)
+            writer.writerow(nome_arquivo)
+
+
 
 df = DataFrame(["Nome", "Idade", "Cidade"])
 df.append(("Carlos", 25, "Campinas"))
