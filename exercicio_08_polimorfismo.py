@@ -127,15 +127,19 @@ class DataFrame():
         return [linha[index] for linha in self.values]
 
     def to_csv(self, nome_arquivo):
-        with open("nome_arquivo.csv", "w", newline= '', encoding='utf-8') as nome_arquivo:
-            writer = csv.writer(nome_arquivo)
-            writer.writerow(nome_arquivo)
+        with open(nome_arquivo, "w", newline= '', encoding='utf-8') as arquivo:
+            writer = csv.writer(arquivo)
+            writer.writerow(self.columns)
+            for linha in self.values:
+                writer.writerow(linha)
 
-    def read_csv(self, arquivo_carregado):
-        with open("arquivo_csv", "r") as arquivo:
-            read = csv.reader(arquivo_carregado)
-            for linha in read:
-                return linha
+def read_csv(nome_arquivo):
+    with open(nome_arquivo, "r") as arquivo:
+        read = csv.reader(arquivo)
+        df = DataFrame(next(read))
+        for linha in read:
+            df.append(linha)
+        return df
 
 
 
@@ -145,7 +149,6 @@ df.append(("Carlos", 25, "Campinas"))
 df.append(("Alice", 20, "Curitiba"))
 df.append(("Bruno", 25, "São Paulo"))
 df.append(("Carla", 19, "Recife"))
-informacoes_pessoais = df
-ler_csv = df.read_csv("nome_arquivo.csv")
-df.to_csv(informacoes_pessoais)
+ler_csv = read_csv("nome_arquivo.csv")
 print(ler_csv)
+#df.to_csv("nome_arquivo.csv")
