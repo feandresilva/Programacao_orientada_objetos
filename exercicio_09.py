@@ -71,4 +71,7 @@ class Atendimento:
         return soma
 
     def entrar_na_fila(self, paciente):
+        self.numero_atendimento.append(self.fila_pacientes)
+
+    def chamar_proximo(self):
         
