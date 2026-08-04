@@ -24,6 +24,16 @@
 # O número de atendimento deverá começar em 1 e ser incrementado automaticamente a cada novo 
 # cadastro. O programa deverá continuar funcionando até que o usuário escolha a opção de encerrar.
 
+# Crie as classes Hemograma, Glicemia e Colesterol, herdando de Exame. 
+# Cada classe deverá possuir os atributos horas_jejum e tipo_tubo, 
+# definidos de acordo com o tipo do exame. 
+# As classes filhas deverão sobrescrever o método exibir_preparo para mostrar 
+# as orientações específicas de coleta.
+# Adicione o método exibir_preparos, que deverá percorrer a lista de exames e 
+# chamar o método exibir_preparo de cada objeto. 
+# No menu, permita escolher o tipo de exame, 
+# criar o objeto da subclasse correspondente e adicioná-lo ao atendimento do paciente.
+
 class Paciente:
     nome: str
     cpf: int
@@ -69,36 +79,60 @@ class Atendimento:
         for exame in self.lista_exames:
             soma += exame.preco
         return soma
-
-    def entrar_na_fila(self, paciente):
-        self.numero_atendimento.append(self.fila_pacientes)
-        
     
-    def chamar_proximo(self):
-    
-
     def iniciar_coleta(self):
+        ...
 
+class Fila:
 
+    def __init__(self):
+        self.lista_fila = []
 
-    def _finalizar_atendimento(self):
-
-
+    def entrar_na_fila(self, atendimento):
+        self.lista_fila.append(atendimento)
+    
+    def chamar_proximo(self):   
+        proximo_da_fila = self.lista_fila[0]
+        del self.lista_fila[0]
+        return proximo_da_fila
 
     def exibir_resumo(self):
+        print(f'Tamanho da fila: {len(self.lista_fila)} pessoas')
 
-while True:
-    print("MENU")
-    print("1. Cadastrar novo paciente")
-    print("2. Incluir exames ")
-    print("3. Adicionar atendimento na fila")
-    print("4. Visualizar fila")
-    print("5. Chamar próximo paciente")
-    print("6. Iniciar coleta")
-    print("7. Finalizar atendimento")
+class Hemograma(Exame):
+    horas_jejum = "Seis horas"
+    tipo_tubo = "A"
 
-    try:
-        opcao_inicial = int(input("Digite a opção escolhida: "))
-    except ValueError:
-        print("Por favor, digite um número válido!")
-        continue
+    def exibir_preparo(self):
+        print("Não é necessário preparo específico")
+
+class Glicemia(Exame):
+    horas_jejum = "Seis horas"
+    tipo_tubo = "A"
+
+    def exibir_preparo(self):
+        print("Seguir as orientações médicas")
+
+
+class Colesterol(Exame):
+    horas_jejum = "Seis horas"
+    tipo_tubo = "A"
+
+    def exibir_preparo(self):
+        print("Beber água")
+
+# while True:
+#     print("MENU")
+#     print("1. Cadastrar novo paciente")
+#     print("2. Incluir exames ")
+#     print("3. Adicionar atendimento na fila")
+#     print("4. Visualizar fila")
+#     print("5. Chamar próximo paciente")
+#     print("6. Iniciar coleta")
+#     print("7. Finalizar atendimento")
+#     try:
+#         opcao_inicial = int(input("Digite a opção escolhida: "))
+#     except ValueError:
+#         print("Por favor, digite um número válido!")
+#         continue
+#     if opcao_inicial == 1:
