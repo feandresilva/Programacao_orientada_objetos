@@ -80,7 +80,25 @@ class Atendimento:
     def iniciar_coleta(self):
 
 
+
     def _finalizar_atendimento(self):
 
 
+
     def exibir_resumo(self):
+
+while True:
+    print("MENU")
+    print("1. Cadastrar novo paciente")
+    print("2. Incluir exames ")
+    print("3. Adicionar atendimento na fila")
+    print("4. Visualizar fila")
+    print("5. Chamar próximo paciente")
+    print("6. Iniciar coleta")
+    print("7. Finalizar atendimento")
+
+    try:
+        opcao_inicial = int(input("Digite a opção escolhida: "))
+    except ValueError:
+        print("Por favor, digite um número válido!")
+        continue
