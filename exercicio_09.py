@@ -161,4 +161,18 @@ while True:
             hemograma_exame.preco = float(input("Digite aqui o preço (R$) do exame: "))
             hemograma_exame.necessita_jejum = input("Digite aqui se há necessidade de jejum: ").strip().capitalize()
             hemograma_exame.exibir_dados()
-    
+        elif definicao_exame == "Glicemia":
+            glicemia_exame.codigo = input("Digite aqui o código do exame: ")
+            glicemia_exame.nome = input("Digite aqui o nome do exame: ")
+            glicemia_exame.preco = float(input("Digite aqui o preço (R$) do exame: "))
+            glicemia_exame.necessita_jejum = input("Digite aqui se há necessidade de jejum: ").strip().capitalize()
+            glicemia_exame.exibir_dados()
+        elif definicao_exame == "Colesterol":
+            colesterol_exame.codigo = input("Digite aqui o código do exame: ")
+            colesterol_exame.nome = input("Digite aqui o nome do exame: ")
+            colesterol_exame.preco = float(input("Digite aqui o preço (R$) do exame: "))
+            colesterol_exame.necessita_jejum = input("Digite aqui se há necessidade de jejum: ").strip().capitalize()
+            colesterol_exame.exibir_dados()
+        else:
+            print("Opção inválida! Tente novamente")
+            continue
