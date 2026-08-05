@@ -122,7 +122,6 @@ class Colesterol(Exame):
         print("Beber água")
 
 novo_paciente = Paciente()
-novo_exame = Exame()
 hemograma_exame = Hemograma()
 glicemia_exame = Glicemia()
 colesterol_exame = Colesterol()
@@ -157,5 +156,9 @@ while True:
     elif opcao_inicial == 2:
         definicao_exame = input("Qual exame deseja fazer? Hemograma, Glicemia ou Colesterol? ").strip().capitalize()
         if definicao_exame == "Hemograma":
-
+            hemograma_exame.codigo = input("Digite aqui o código do exame: ")
+            hemograma_exame.nome = input("Digite aqui o nome do exame: ")
+            hemograma_exame.preco = float(input("Digite aqui o preço (R$) do exame: "))
+            hemograma_exame.necessita_jejum = input("Digite aqui se há necessidade de jejum: ").strip().capitalize()
+            hemograma_exame.exibir_dados()
     
