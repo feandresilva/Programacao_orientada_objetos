@@ -122,7 +122,10 @@ class Colesterol(Exame):
         print("Beber água")
 
 novo_paciente = Paciente()
-
+novo_exame = Exame()
+hemograma_exame = Hemograma()
+glicemia_exame = Glicemia()
+colesterol_exame = Colesterol()
 while True:
     print("MENU")
     print("1. Cadastrar novo paciente")
@@ -133,7 +136,7 @@ while True:
     print("6. Iniciar coleta")
     print("7. Finalizar atendimento")
     try:
-        opcao_inicial = int(input("Digite a opção escolhida: "))
+        opcao_inicial = int(input("O que deseja fazer? Digite a opção escolhida: "))
     except ValueError:
         print("Opção inválida! Por favor, digite um número válido!")
         continue
@@ -151,3 +154,8 @@ while True:
             print("Opção inválida! Por favor, tente novamnte")
             continue
         novo_paciente.exibir_dados()
+    elif opcao_inicial == 2:
+        definicao_exame = input("Qual exame deseja fazer? Hemograma, Glicemia ou Colesterol? ").strip().capitalize()
+        if definicao_exame == "Hemograma":
+
+    
