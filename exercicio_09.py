@@ -138,8 +138,16 @@ while True:
         print("Opção inválida! Por favor, digite um número válido!")
         continue
     if opcao_inicial == 1:
-        nome = input("Por favor, digite o nome do paciente: ").strip().capitalize()
-        cpf = int(input("Por favor, digite o CPF do paciente: "))
-        data_nascimento = input("Por favor, digite a data de nascimento do paciente: ")
-        numero_atendimento = input("Por favor, digite o número de atendimento do paciente: ")
+        novo_paciente.nome = input("Por favor, digite o nome do paciente: ").strip().capitalize()
+        try:
+            novo_paciente.cpf = int(input("Por favor, digite o CPF do paciente: "))
+        except ValueError:
+            print("Opção inválida! Por favor, tente novamnte")
+            continue
+        novo_paciente.data_nascimento = input("Por favor, digite a data de nascimento do paciente: ")
+        try:
+            novo_paciente.numero_atendimento = input("Por favor, digite o número de atendimento do paciente: ")
+        except ValueError:
+            print("Opção inválida! Por favor, tente novamnte")
+            continue
         novo_paciente.exibir_dados()
