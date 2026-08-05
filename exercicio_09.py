@@ -121,18 +121,25 @@ class Colesterol(Exame):
     def exibir_preparo(self):
         print("Beber água")
 
-# while True:
-#     print("MENU")
-#     print("1. Cadastrar novo paciente")
-#     print("2. Incluir exames ")
-#     print("3. Adicionar atendimento na fila")
-#     print("4. Visualizar fila")
-#     print("5. Chamar próximo paciente")
-#     print("6. Iniciar coleta")
-#     print("7. Finalizar atendimento")
-#     try:
-#         opcao_inicial = int(input("Digite a opção escolhida: "))
-#     except ValueError:
-#         print("Por favor, digite um número válido!")
-#         continue
-#     if opcao_inicial == 1:
+novo_paciente = Paciente()
+
+while True:
+    print("MENU")
+    print("1. Cadastrar novo paciente")
+    print("2. Incluir exames ")
+    print("3. Adicionar atendimento na fila")
+    print("4. Visualizar fila")
+    print("5. Chamar próximo paciente")
+    print("6. Iniciar coleta")
+    print("7. Finalizar atendimento")
+    try:
+        opcao_inicial = int(input("Digite a opção escolhida: "))
+    except ValueError:
+        print("Opção inválida! Por favor, digite um número válido!")
+        continue
+    if opcao_inicial == 1:
+        nome = input("Por favor, digite o nome do paciente: ").strip().capitalize()
+        cpf = int(input("Por favor, digite o CPF do paciente: "))
+        data_nascimento = input("Por favor, digite a data de nascimento do paciente: ")
+        numero_atendimento = input("Por favor, digite o número de atendimento do paciente: ")
+        novo_paciente.exibir_dados()
