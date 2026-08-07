@@ -40,6 +40,12 @@ class Paciente:
     numero_atendimento: int
     data_nascimento: str
 
+    def __str__(self):
+        return self.nome
+
+    def __repr__(self):
+        return self.__str__()
+
     def exibir_dados(self):
         print(f'Nome: {self.nome}')
         print(f'Data de Nascimento: {self.data_nascimento}')
@@ -71,6 +77,12 @@ class Atendimento:
     fila_pacientes: int
     gerar_numeros_atendimentos: int
 
+    def __init__(self):
+        self.lista_exames = []
+
+    def __str__(self):
+        return f'{self.paciente}, {self.lista_exames}'
+
     def adicionar_exames(self, exame):
         self.lista_exames.append(exame)
 
@@ -98,15 +110,29 @@ class Fila:
 
     def exibir_resumo(self):
         print(f'Tamanho da fila: {len(self.lista_fila)} pessoas')
+        for atendimento in self.lista_fila:
+            print(atendimento)
 
 class Hemograma(Exame):
+
     horas_jejum = "Seis horas"
     tipo_tubo = "A"
+
+    codigo = 1
+    nome = "Hemograma"
+    preco = 28.99
+    necessita_jejum = True
 
     def exibir_preparo(self):
         print("Não é necessário preparo específico")
 
 class Glicemia(Exame):
+
+    codigo = 2
+    nome = "Glicemia"
+    preco = 75.60
+    necessita_jejum = False
+
     horas_jejum = "Seis horas"
     tipo_tubo = "A"
 
@@ -117,6 +143,11 @@ class Glicemia(Exame):
 class Colesterol(Exame):
     horas_jejum = "Seis horas"
     tipo_tubo = "A"
+
+    codigo = 3
+    nome = "Hemograma"
+    preco = 99.99
+    necessita_jejum = True
 
     def exibir_preparo(self):
         print("Beber água")
@@ -139,8 +170,7 @@ def cadastrar_novo_usuario():
         return novo_paciente
 
 lista_pacientes = []
-lista_de_exames = []
-
+mostrar_lista = Fila()
 while True:
     print("MENU")
     print("1. Cadastrar novo paciente")
@@ -173,49 +203,40 @@ while True:
             if decisao_menu_interno == 1:
                 checagem_cadastro_usuario = input("O usuário já está cadastrado? Digite Sim ou Nao: ").strip().capitalize()
                 if checagem_cadastro_usuario == "Sim":
-                    print(f'Lista de pacientes cadastrados: {lista_pacientes}')
+                    print('Lista de pacientes cadastrados:', *enumerate(lista_pacientes), sep="\n")
                     paciente_selecionado = int(input("Selecione o índice do paciente desejado: "))
                     novo_atendimento.paciente = lista_pacientes[paciente_selecionado]
                 elif checagem_cadastro_usuario == "Nao":
-                    cadastrar_novo_usuario()
+                    novo_paciente = cadastrar_novo_usuario()
                     lista_pacientes.append(novo_paciente)
                     novo_paciente.exibir_dados()
+                    novo_atendimento.paciente = novo_paciente
             elif decisao_menu_interno == 2:
-                hemograma_exame = Hemograma()
                 definicao_exame = input("Qual exame deseja fazer? Hemograma, Glicemia ou Colesterol? ").strip().capitalize()
                 if definicao_exame == "Hemograma":
-                    hemograma_exame.codigo = input("Digite aqui o código do exame: ")
-                    hemograma_exame.nome = input("Digite aqui o nome do exame: ")
-                    hemograma_exame.preco = float(input("Digite aqui o preço (R$) do exame: "))
-                    hemograma_exame.necessita_jejum = input("Digite aqui se há necessidade de jejum: ").strip().capitalize()
-                    lista_de_exames.append(hemograma_exame)
+                    hemograma_exame = Hemograma()
+                    novo_atendimento.lista_exames.append(hemograma_exame)
                     hemograma_exame.exibir_dados()
                 elif definicao_exame == "Glicemia":
                     glicemia_exame = Glicemia()
-                    glicemia_exame.codigo = input("Digite aqui o código do exame: ")
-                    glicemia_exame.nome = input("Digite aqui o nome do exame: ")
-                    glicemia_exame.preco = float(input("Digite aqui o preço (R$) do exame: "))
-                    glicemia_exame.necessita_jejum = input("Digite aqui se há necessidade de jejum: ").strip().capitalize()
-                    lista_de_exames.append(glicemia_exame)
+                    novo_atendimento.lista_exames.append(glicemia_exame)
                     glicemia_exame.exibir_dados()
                 elif definicao_exame == "Colesterol":
                     colesterol_exame = Colesterol()
-                    colesterol_exame.codigo = input("Digite aqui o código do exame: ")
-                    colesterol_exame.nome = input("Digite aqui o nome do exame: ")
-                    colesterol_exame.preco = float(input("Digite aqui o preço (R$) do exame: "))
-                    colesterol_exame.necessita_jejum = input("Digite aqui se há necessidade de jejum: ").strip().capitalize()
-                    lista_de_exames.append(colesterol_exame)
+                    novo_atendimento.lista_exames.append(colesterol_exame)
                     colesterol_exame.exibir_dados()
                 else:
                     print("Opção inválida! Tente novamente")
                     continue
             elif decisao_menu_interno == 3:
                 print("O processo foi concluido com sucesso!")
+                mostrar_lista.entrar_na_fila(novo_atendimento)
                 break
     elif opcao_inicial == 3:
-        mostrar_lista = Fila()
         if len(mostrar_lista.lista_fila) <= 0:
             print("Não há pacientes cadastrados")
             continue
         elif len(mostrar_lista.lista_fila) >= 1:
-            print(mostrar_lista.exibir_resumo)
+            mostrar_lista.exibir_resumo()
+    elif opcao_inicial == 4:
+        
