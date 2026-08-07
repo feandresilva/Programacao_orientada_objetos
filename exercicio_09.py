@@ -209,8 +209,8 @@ while True:
                 else:
                     print("Opção inválida! Tente novamente")
                     continue
-                    continue
             elif decisao_menu_interno == 3:
                 print("O processo foi concluido com sucesso!")
+                break
     # elif opcao_inicial == 3:
 
