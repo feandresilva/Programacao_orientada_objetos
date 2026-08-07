@@ -213,8 +213,10 @@ while True:
                 print("O processo foi concluido com sucesso!")
                 break
     elif opcao_inicial == 3:
-        # mostrar_lista = Lista()
-        # if len(lista_fila) <= 0:
-        #     print("Não há pacientes cadastrados")
-        #     continue
-        # elif len(lista_fila) >= 1:
+        mostrar_lista = Fila()
+        if len(mostrar_lista) <= 0:
+            print("Não há pacientes cadastrados")
+            continue
+        elif len(mostrar_lista) >= 1:
+            print(mostrar_lista.exibir_resumo())
+    
