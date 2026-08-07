@@ -166,7 +166,7 @@ while True:
             print("2. Adicionar exame")
             print("3. Concluir")
             try:
-                decisao_menu_interno = int(input("Digite aa opção desejada: "))
+                decisao_menu_interno = int(input("Digite a opção desejada: "))
             except ValueError:
                 print("Erro! Por favor, digite um número válido")
                 continue
@@ -176,37 +176,41 @@ while True:
                     print(f'Lista de pacientes cadastrados: {lista_pacientes}')
                     paciente_selecionado = int(input("Selecione o índice do paciente desejado: "))
                     novo_atendimento.paciente = lista_pacientes[paciente_selecionado]
-                elif checagem_cadastro_usuario == "Não":
+                elif checagem_cadastro_usuario == "Nao":
                     cadastrar_novo_usuario()
                     lista_pacientes.append(novo_paciente)
                     novo_paciente.exibir_dados()
-    #     hemograma_exame = Hemograma()
-    #     definicao_exame = input("Qual exame deseja fazer? Hemograma, Glicemia ou Colesterol? ").strip().capitalize()
-    #     if definicao_exame == "Hemograma":
-    #         hemograma_exame.codigo = input("Digite aqui o código do exame: ")
-    #         hemograma_exame.nome = input("Digite aqui o nome do exame: ")
-    #         hemograma_exame.preco = float(input("Digite aqui o preço (R$) do exame: "))
-    #         hemograma_exame.necessita_jejum = input("Digite aqui se há necessidade de jejum: ").strip().capitalize()
-    #         lista_de_exames.append(hemograma_exame)
-    #         hemograma_exame.exibir_dados()
-    #     elif definicao_exame == "Glicemia":
-    #         glicemia_exame = Glicemia()
-    #         glicemia_exame.codigo = input("Digite aqui o código do exame: ")
-    #         glicemia_exame.nome = input("Digite aqui o nome do exame: ")
-    #         glicemia_exame.preco = float(input("Digite aqui o preço (R$) do exame: "))
-    #         glicemia_exame.necessita_jejum = input("Digite aqui se há necessidade de jejum: ").strip().capitalize()
-    #         lista_de_exames.append(glicemia_exame)
-    #         glicemia_exame.exibir_dados()
-    #     elif definicao_exame == "Colesterol":
-    #         colesterol_exame = Colesterol()
-    #         colesterol_exame.codigo = input("Digite aqui o código do exame: ")
-    #         colesterol_exame.nome = input("Digite aqui o nome do exame: ")
-    #         colesterol_exame.preco = float(input("Digite aqui o preço (R$) do exame: "))
-    #         colesterol_exame.necessita_jejum = input("Digite aqui se há necessidade de jejum: ").strip().capitalize()
-    #         lista_de_exames.append(colesterol_exame)
-    #         colesterol_exame.exibir_dados()
-    #     else:
-    #         print("Opção inválida! Tente novamente")
-    #         continue
+            elif decisao_menu_interno == 2:
+                hemograma_exame = Hemograma()
+                definicao_exame = input("Qual exame deseja fazer? Hemograma, Glicemia ou Colesterol? ").strip().capitalize()
+                if definicao_exame == "Hemograma":
+                    hemograma_exame.codigo = input("Digite aqui o código do exame: ")
+                    hemograma_exame.nome = input("Digite aqui o nome do exame: ")
+                    hemograma_exame.preco = float(input("Digite aqui o preço (R$) do exame: "))
+                    hemograma_exame.necessita_jejum = input("Digite aqui se há necessidade de jejum: ").strip().capitalize()
+                    lista_de_exames.append(hemograma_exame)
+                    hemograma_exame.exibir_dados()
+                elif definicao_exame == "Glicemia":
+                    glicemia_exame = Glicemia()
+                    glicemia_exame.codigo = input("Digite aqui o código do exame: ")
+                    glicemia_exame.nome = input("Digite aqui o nome do exame: ")
+                    glicemia_exame.preco = float(input("Digite aqui o preço (R$) do exame: "))
+                    glicemia_exame.necessita_jejum = input("Digite aqui se há necessidade de jejum: ").strip().capitalize()
+                    lista_de_exames.append(glicemia_exame)
+                    glicemia_exame.exibir_dados()
+                elif definicao_exame == "Colesterol":
+                    colesterol_exame = Colesterol()
+                    colesterol_exame.codigo = input("Digite aqui o código do exame: ")
+                    colesterol_exame.nome = input("Digite aqui o nome do exame: ")
+                    colesterol_exame.preco = float(input("Digite aqui o preço (R$) do exame: "))
+                    colesterol_exame.necessita_jejum = input("Digite aqui se há necessidade de jejum: ").strip().capitalize()
+                    lista_de_exames.append(colesterol_exame)
+                    colesterol_exame.exibir_dados()
+                else:
+                    print("Opção inválida! Tente novamente")
+                    continue
+                    continue
+            elif decisao_menu_interno == 3:
+                print("O processo foi concluido com sucesso!")
     # elif opcao_inicial == 3:
 
