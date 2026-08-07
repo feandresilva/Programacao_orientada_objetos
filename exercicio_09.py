@@ -171,7 +171,7 @@ while True:
                 print("Erro! Por favor, digite um número válido")
                 continue
             if decisao_menu_interno == 1:
-                checagem_cadastro_usuario = input("O usuário já está cadastrado? Digite Sim ou Não ").strip().capitalize()
+                checagem_cadastro_usuario = input("O usuário já está cadastrado? Digite Sim ou Nao: ").strip().capitalize()
                 if checagem_cadastro_usuario == "Sim":
                     print(f'Lista de pacientes cadastrados: {lista_pacientes}')
                     paciente_selecionado = int(input("Selecione o índice do paciente desejado: "))
@@ -214,9 +214,8 @@ while True:
                 break
     elif opcao_inicial == 3:
         mostrar_lista = Fila()
-        if len(mostrar_lista) <= 0:
+        if len(mostrar_lista.lista_fila) <= 0:
             print("Não há pacientes cadastrados")
             continue
-        elif len(mostrar_lista) >= 1:
-            print(mostrar_lista.exibir_resumo())
-    
+        elif len(mostrar_lista.lista_fila) >= 1:
+            print(mostrar_lista.exibir_resumo)
