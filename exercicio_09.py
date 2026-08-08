@@ -239,4 +239,4 @@ while True:
         elif len(mostrar_lista.lista_fila) >= 1:
             mostrar_lista.exibir_resumo()
     elif opcao_inicial == 4:
-        
+        novo_atendimento.chamar_proximo()
