@@ -247,7 +247,3 @@ while True:
             print(f'O próximo da fila é: {mostrar_lista.chamar_proximo()}')
             print(f'Fila atualizada: {mostrar_lista.exibir_resumo()}')
     elif opcao_inicial == 5:
-        
-
-
-        
