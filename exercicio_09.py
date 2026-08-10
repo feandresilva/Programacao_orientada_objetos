@@ -79,6 +79,7 @@ class Atendimento:
 
     def __init__(self):
         self.lista_exames = []
+        self.situacao_atual = "Em atendimento"
 
     def __str__(self):
         return f'{self.paciente}, {self.lista_exames}'
@@ -93,7 +94,11 @@ class Atendimento:
         return soma
     
     def iniciar_coleta(self):
-        ...
+        self.situacao_atual = "Coleta iniciada..."
+        print(self.situacao_atual)
+        for exame in self.lista_exames:
+            print(f'O exame {exame.nome} foi coletado com sucesso!')
+
 
 class Fila:
 
@@ -171,6 +176,7 @@ def cadastrar_novo_usuario():
 
 lista_pacientes = []
 mostrar_lista = Fila()
+paciente_proximo = None
 while True:
     print("MENU")
     print("1. Cadastrar novo paciente")
@@ -178,7 +184,10 @@ while True:
     print("3. Visualizar fila")
     print("4. Chamar próximo paciente")
     print("5. Iniciar coleta")
-    print("6. Finalizar atendimento")
+    print("6. ")
+    print("7. ")
+    print("8. ")
+    print("9. Finalizar atendimento")
     
     try:
         opcao_inicial = int(input("O que deseja fazer? Digite a opção escolhida: "))
@@ -240,10 +249,16 @@ while True:
             mostrar_lista.exibir_resumo()
     elif opcao_inicial == 4:
         if len(mostrar_lista.lista_fila) <= 0:
-            print("Não há pacientes cadastrados")
+            print("Não há pacientes na fila")
             continue
         elif len(mostrar_lista.lista_fila) >= 1:
-            print(mostrar_lista.exibir_resumo())
-            print(f'O próximo da fila é: {mostrar_lista.chamar_proximo()}')
-            print(f'Fila atualizada: {mostrar_lista.exibir_resumo()}')
+            mostrar_lista.exibir_resumo()
+            paciente_proximo = mostrar_lista.chamar_proximo()
+            print(f'O próximo da fila é: {paciente_proximo}')
+            print(f'Fila atualizada:')
+            mostrar_lista.exibir_resumo()
     elif opcao_inicial == 5:
+        if paciente_proximo == None:
+            print("Sem nenhum paciente!")
+        else:
+            paciente_proximo.iniciar_coleta()
