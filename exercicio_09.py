@@ -34,6 +34,35 @@
 # No menu, permita escolher o tipo de exame, 
 # criar o objeto da subclasse correspondente e adicioná-lo ao atendimento do paciente.
 
+# Adicione ao programa funções para salvar e carregar os dados da fila de atendimentos 
+# utilizando a biblioteca pickle.
+
+# Crie a função salvar_fila, que deverá armazenar a fila atual em um arquivo chamado 
+# fila_atendimentos.pkl.
+
+# Crie a função carregar_fila, que deverá ler o arquivo fila_atendimentos.pkl e restaurar a fila. 
+
+# Adicione ao menu opções para salvar e carregar os dados da fila. 
+# Antes de encerrar o programa, os dados também deverão ser salvos automaticamente.
+
+# Crie ainda uma função chamada registrar_log, 
+# que deverá armazenar em um arquivo chamado atendimentos.log a data, o horário e aa ação realizada.
+
+# Essa função deverá ser utilizada nos métodos relacionados ao andamento da fila
+
+# Cada registro deverá informar o número de atendimento, o nome do paciente e a ação realizada. 
+# Os novos registros deverão ser acrescentados ao final do arquivo, 
+# sem apagar os registros anteriores.
+
+# Exemplo do conteúdo do arquivo:
+
+# 10/08/2026 14:20:05 - Atendimento 1 - Ana Souza entrou na fila.
+# 10/08/2026 14:32:18 - Atendimento 1 - Ana Souza foi chamada.
+# 10/08/2026 14:35:02 - Atendimento 1 - Coleta iniciada.
+# 10/08/2026 14:42:47 - Atendimento 1 - Atendimento finalizado.
+
+import pickle
+
 class Paciente:
     nome: str
     cpf: int
@@ -174,6 +203,18 @@ def cadastrar_novo_usuario():
             continue
         return novo_paciente
 
+def salvar_fila():
+    if len(mostrar_lista.lista_fila) >= 1:
+        with open("fila_atendimentos.pkl", "wb") as f:
+            pickle.dump(mostrar_lista.lista_fila, f, pickle.HIGHEST_PROTOCOL)
+            print("Arquivo salvo com sucesso")
+    else:
+        print("Ainda não há pacientes!")
+
+
+#Crie a função salvar_fila, que deverá armazenar a fila atual em um arquivo chamado 
+# fila_atendimentos.pkl.
+
 lista_pacientes = []
 mostrar_lista = Fila()
 paciente_proximo = None
@@ -184,10 +225,9 @@ while True:
     print("3. Visualizar fila")
     print("4. Chamar próximo paciente")
     print("5. Iniciar coleta")
-    print("6. ")
-    print("7. ")
-    print("8. ")
-    print("9. Finalizar atendimento")
+    print("6. Salvar fila")
+    print("7. Carregar")
+    print("8. Finalizar atendimento")
     
     try:
         opcao_inicial = int(input("O que deseja fazer? Digite a opção escolhida: "))
@@ -262,3 +302,5 @@ while True:
             print("Sem nenhum paciente!")
         else:
             paciente_proximo.iniciar_coleta()
+    elif opcao_inicial == 6:
+        salvar_fila()
