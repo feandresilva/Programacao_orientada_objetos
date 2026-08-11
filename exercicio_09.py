@@ -207,13 +207,15 @@ def salvar_fila():
     if len(mostrar_lista.lista_fila) >= 1:
         with open("fila_atendimentos.pkl", "wb") as f:
             pickle.dump(mostrar_lista.lista_fila, f, pickle.HIGHEST_PROTOCOL)
-            print("Arquivo salvo com sucesso")
+            print("Arquivo salvo com sucesso!")
     else:
         print("Ainda não há pacientes!")
 
 
-#Crie a função salvar_fila, que deverá armazenar a fila atual em um arquivo chamado 
-# fila_atendimentos.pkl.
+def carregar_fila():
+    with open('fila_atendimentos.pkl', 'rb') as f:
+        mostrar_lista.lista_fila = pickle.load(f)
+        print("Arquivo carregado com sucesso!")
 
 lista_pacientes = []
 mostrar_lista = Fila()
@@ -304,3 +306,5 @@ while True:
             paciente_proximo.iniciar_coleta()
     elif opcao_inicial == 6:
         salvar_fila()
+    elif opcao_inicial == 7:
+        carregar_fila()
