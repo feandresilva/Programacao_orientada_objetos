@@ -46,7 +46,7 @@
 # Antes de encerrar o programa, os dados também deverão ser salvos automaticamente.
 
 # Crie ainda uma função chamada registrar_log, 
-# que deverá armazenar em um arquivo chamado atendimentos.log a data, o horário e aa ação realizada.
+# que deverá armazenar em um arquivo chamado atendimentos.log a data, o horário e a ação realizada.
 
 # Essa função deverá ser utilizada nos métodos relacionados ao andamento da fila
 
