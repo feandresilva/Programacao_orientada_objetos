@@ -62,6 +62,7 @@
 # 10/08/2026 14:42:47 - Atendimento 1 - Atendimento finalizado.
 
 import pickle
+from datetime import datetime
 
 class Paciente:
     nome: str
@@ -127,6 +128,10 @@ class Atendimento:
         print(self.situacao_atual)
         for exame in self.lista_exames:
             print(f'O exame {exame.nome} foi coletado com sucesso!')
+        with open("atendimentos.log", "a") as f:
+            f.write(f'{datetime.now()}, atendimento {self.paciente.numero_atendimento}, {self.proximo_da_fila.paciente.nome} coleta iniciada\n')
+            print("Arquivo salvo com sucesso!")
+        
 
 
 class Fila:
@@ -136,10 +141,17 @@ class Fila:
 
     def entrar_na_fila(self, atendimento):
         self.lista_fila.append(atendimento)
+        with open("atendimentos.log", "a") as f:
+            f.write(f'{datetime.now()}, atendimento {atendimento.paciente.numero_atendimento}, {atendimento.paciente.nome} entrou na fila.\n')
+            print("Arquivo salvo com sucesso!")
+
     
     def chamar_proximo(self):   
         proximo_da_fila = self.lista_fila[0]
         del self.lista_fila[0]
+        with open("atendimentos.log", "a") as f:
+            f.write(f'{datetime.now()}, atendimento {proximo_da_fila.paciente.numero_atendimento}, {proximo_da_fila.paciente.nome} foi chamado(a)\n')
+            print("Arquivo salvo com sucesso!")
         return proximo_da_fila
 
     def exibir_resumo(self):
@@ -216,6 +228,19 @@ def carregar_fila():
     with open('fila_atendimentos.pkl', 'rb') as f:
         mostrar_lista.lista_fila = pickle.load(f)
         print("Arquivo carregado com sucesso!")
+
+
+
+
+
+#Crie ainda uma função chamada registrar_log, 
+# que deverá armazenar em um arquivo chamado atendimentos.log a data, o horário e a ação realizada.
+
+# Essa função deverá ser utilizada nos métodos relacionados ao andamento da fila
+
+# Cada registro deverá informar o número de atendimento, o nome do paciente e a ação realizada. 
+# Os novos registros deverão ser acrescentados ao final do arquivo, 
+# sem apagar os registros anteriores.
 
 lista_pacientes = []
 mostrar_lista = Fila()
