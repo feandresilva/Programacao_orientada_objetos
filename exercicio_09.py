@@ -229,19 +229,6 @@ def carregar_fila():
         mostrar_lista.lista_fila = pickle.load(f)
         print("Arquivo carregado com sucesso!")
 
-
-
-
-
-#Crie ainda uma função chamada registrar_log, 
-# que deverá armazenar em um arquivo chamado atendimentos.log a data, o horário e a ação realizada.
-
-# Essa função deverá ser utilizada nos métodos relacionados ao andamento da fila
-
-# Cada registro deverá informar o número de atendimento, o nome do paciente e a ação realizada. 
-# Os novos registros deverão ser acrescentados ao final do arquivo, 
-# sem apagar os registros anteriores.
-
 lista_pacientes = []
 mostrar_lista = Fila()
 paciente_proximo = None
@@ -334,5 +321,5 @@ while True:
     elif opcao_inicial == 7:
         carregar_fila()
     elif opcao_inicial == 8:
-        
+
 
