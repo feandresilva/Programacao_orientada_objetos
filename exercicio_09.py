@@ -129,7 +129,7 @@ class Atendimento:
         for exame in self.lista_exames:
             print(f'O exame {exame.nome} foi coletado com sucesso!')
         with open("atendimentos.log", "a") as f:
-            f.write(f'{datetime.now()}, atendimento {self.paciente.numero_atendimento}, {self.proximo_da_fila.paciente.nome} coleta iniciada\n')
+            f.write(f'{datetime.now()}, atendimento {self.paciente.numero_atendimento}, {self.paciente.nome} iniciou a coleta\n')
             print("Arquivo salvo com sucesso!")
         
 
