@@ -19,3 +19,54 @@
 # O sistema deve ser resiliente a erros e a entradas incorretas/inválidas. 
 # Exiga uma autenticação (usuário e senha) para as ações administrativas do sistema 
 # (adicionar aluno, alterar matrícula, registrar entrada/saída, etc).
+
+import pickle
+from datetime import date
+
+class Aluno:
+
+    def __init__(self, nome, cpf, data_nascimento, telefone, endereco, numero_matricula):
+        self.nome = nome
+        self.cpf = cpf
+        if type(cpf) != str:
+            raise ValueError("O CPF precisa ser uma string!")
+        self.data_nascimento = data_nascimento
+        if type(data_nascimento) != date:
+            self.data_nascimento = date.fromisoformat(data_nascimento) #aaaa-mm-dd
+        self.telefone = telefone
+        if type(telefone) != int:
+            raise ValueError("O número de telefone precisa ser um inteiro (números)")
+        self.endereco = endereco
+        if type(endereco) != str:
+            raise ValueError("O endereço deve ser uma string")
+        self.numero_matricula = numero_matricula
+        if type(numero_matricula) != int:
+            raise ValueError("O número da matrícula deve ser um inteiro (números)")
+
+    def __str__(self):
+        return (f'Nome: {self.nome}, Data de Nascimento: {self.data_nascimento}, CPF: {self.cpf}, Telefone: {self.telefone}, Número da Matrícula {self.numero_matricula}')
+
+class Matricula:
+    data_inicio: str
+    data_vencimento: str
+    status = []
+
+    def __init__(self):
+        self.status = ["Ativa", "Inadimplente", "Cancelada"]
+
+def cadastrar_aluno():
+    while True:
+        nome = input("Por favor, insira o nome do novo aluno: ").strip().capitalize()
+        cpf = (input("Por favor, insira o CPF do novo aluno: "))
+        data_nascimento = input("Por favor, insira a data de nascimento do novo aluno (aaaa-mm-dd): ")
+        telefone = int(input("Por favor, insira o telefone do novo aluno: "))
+        endereco = input("Por favor, insira o endereço do novo aluno: ")
+        numero_matricula = int(input("Por favor, insira o número da matrícula do novo aluno: "))
+        novo_aluno = Aluno(nome, cpf, data_nascimento, telefone, endereco, numero_matricula)
+        return novo_aluno
+
+novo_aluno = cadastrar_aluno()
+print(novo_aluno)
+
+
+
