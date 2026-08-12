@@ -131,7 +131,11 @@ class Atendimento:
         with open("atendimentos.log", "a") as f:
             f.write(f'{datetime.now()}, atendimento {self.paciente.numero_atendimento}, {self.paciente.nome} iniciou a coleta\n')
             print("Arquivo salvo com sucesso!")
-        
+
+    def finalizar_atendimento(self):
+        with open("atendimentos.log", "a") as f:
+            f.write(f'{datetime.now()}, atendimento {self.paciente.numero_atendimento}, atendimento finalizado\n')
+            print("Arquivo salvo com sucesso!")
 
 
 class Fila:
@@ -321,5 +325,9 @@ while True:
     elif opcao_inicial == 7:
         carregar_fila()
     elif opcao_inicial == 8:
-
-
+        paciente_proximo.finalizar_atendimento()
+        print("O programa foi finalizado com sucesso")
+        break
+    else:
+        print("Opção inválida! Tente novamente")
+        continue
