@@ -333,3 +333,6 @@ while True:
         salvar_fila()
     elif opcao_inicial == 7:
         carregar_fila()
+    elif opcao_inicial == 8:
+        
+
