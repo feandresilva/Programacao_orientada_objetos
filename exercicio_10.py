@@ -22,6 +22,7 @@
 
 import pickle
 from datetime import date
+from datetime import datetime
 
 class Aluno:
 
@@ -46,6 +47,11 @@ class Aluno:
     def __str__(self):
         return (f'Nome: {self.nome}, Data de Nascimento: {self.data_nascimento}, CPF: {self.cpf}, Telefone: {self.telefone}, Número da Matrícula: {self.numero_matricula}')
 
+    def registrar_entrada(self):
+        with open("registro_atividade_academia.log", "a") as f:
+            f.write(f'{datetime.now()}, o aluno {self.nome}, matrícula nº{self.numero_matricula}, entrou na academia.\n')
+            print("Arquivo salvo com sucesso!")
+
 class Matricula:
     data_inicio: str
     data_vencimento: str
@@ -53,6 +59,8 @@ class Matricula:
 
     def __init__(self):
         self.status = ["Ativa", "Inadimplente", "Cancelada"]
+
+    
 
 def cadastrar_aluno():
     while True:
