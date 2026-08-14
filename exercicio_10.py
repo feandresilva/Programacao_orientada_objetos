@@ -50,20 +50,32 @@ class Aluno:
     def registrar_entrada(self):
         with open("registro_atividade_academia.log", "a") as f:
             f.write(f'{datetime.now()}, o aluno {self.nome}, matrícula nº{self.numero_matricula}, entrou na academia.\n')
-            print("Arquivo salvo com sucesso!")
+            print("Log salvo com sucesso!")
 
     def registrar_saida(self):
         with open("registro_atividade_academia.log", "a") as f:
             f.write(f'{datetime.now()}, o aluno {self.nome}, matrícula nº {self.numero_matricula}, saiu da academia\n')
+            print("Log salvo com sucesso!")
 
 class Matricula:
     data_inicio: str
     data_vencimento: str
-    status = []
+    status = "Ativa"
 
     def __init__(self):
-        self.status = ["Ativa", "Inadimplente", "Cancelada"]
+        self.ativar_matricula()
 
+    def cancelar_matricula(self):
+        self.status = "Cancelada"
+        return "A matrícula foi cancelada com sucesso!"
+
+    def matricula_inadimplente(self):
+        self.status = "Inadimplente"
+        return "A matrícula está inadimplente!"
+
+    def ativar_matricula(self):
+        self.status = "Ativa"
+        return "A matrícula está ativa!"
     
 
 def cadastrar_aluno():
@@ -76,9 +88,6 @@ def cadastrar_aluno():
         numero_matricula = int(input("Por favor, insira o número da matrícula do novo aluno: "))
         novo_aluno = Aluno(nome, cpf, data_nascimento, telefone, endereco, numero_matricula)
         return novo_aluno
-
-#novo_aluno = cadastrar_aluno()
-#novo_aluno = Aluno()
 
 while True:
     print("MENU")
@@ -96,5 +105,6 @@ while True:
         continue
     if opcao_inicial == 1:
         novo_aluno = cadastrar_aluno()
-
+    elif opcao_inicial == 2:
+        
 
