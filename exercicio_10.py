@@ -77,18 +77,24 @@ def cadastrar_aluno():
         novo_aluno = Aluno(nome, cpf, data_nascimento, telefone, endereco, numero_matricula)
         return novo_aluno
 
-novo_aluno = cadastrar_aluno()
-print(novo_aluno)
+#novo_aluno = cadastrar_aluno()
+#novo_aluno = Aluno()
 
 while True:
     print("MENU")
     print("1. Cadastrar novo aluno")
-    print("2. Alterar matrícula")
-    print("3. Verificar entrada")
-    print("4. Registrar saída")
-    print("5. Finalizar")
+    print("2. Verificar matrícula")
+    print("3. Alterar matrícula")
+    print("4. Autorizar entrada")
+    print("5. Registrar saída")
+    print("6. Finalizar")
 
-
-
+    try:
+        opcao_inicial = int(input("Digite a opção desejada: "))
+    except ValueError:
+        print("Por favor, insira um valor válido!")
+        continue
+    if opcao_inicial == 1:
+        novo_aluno = cadastrar_aluno()
 
 
