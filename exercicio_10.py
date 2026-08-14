@@ -52,6 +52,10 @@ class Aluno:
             f.write(f'{datetime.now()}, o aluno {self.nome}, matrícula nº{self.numero_matricula}, entrou na academia.\n')
             print("Arquivo salvo com sucesso!")
 
+    def registrar_saida(self):
+        with open("registro_atividade_academia.log", "a") as f:
+            f.write(f'{datetime.now()}, o aluno {self.nome}, matrícula nº {self.numero_matricula}, saiu da academia\n')
+
 class Matricula:
     data_inicio: str
     data_vencimento: str
