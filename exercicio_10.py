@@ -44,7 +44,7 @@ class Aluno:
             raise ValueError("O número da matrícula deve ser um inteiro (números)")
 
     def __str__(self):
-        return (f'Nome: {self.nome}, Data de Nascimento: {self.data_nascimento}, CPF: {self.cpf}, Telefone: {self.telefone}, Número da Matrícula {self.numero_matricula}')
+        return (f'Nome: {self.nome}, Data de Nascimento: {self.data_nascimento}, CPF: {self.cpf}, Telefone: {self.telefone}, Número da Matrícula: {self.numero_matricula}')
 
 class Matricula:
     data_inicio: str
@@ -67,6 +67,16 @@ def cadastrar_aluno():
 
 novo_aluno = cadastrar_aluno()
 print(novo_aluno)
+
+while True:
+    print("MENU")
+    print("1. Cadastrar novo aluno")
+    print("2. Alterar matrícula")
+    print("3. Verificar entrada")
+    print("4. Registrar saída")
+    print("5. Finalizar")
+
+
 
 
 
