@@ -22,13 +22,14 @@
 
 import pickle
 from datetime import date
-from datetime import datetime
+from datetime import datetime, timedelta
 
 class Aluno:
 
-    def __init__(self, nome, cpf, data_nascimento, telefone, endereco, numero_matricula):
+    def __init__(self, nome, cpf, data_nascimento, telefone, endereco):
         self.nome = nome
         self.cpf = cpf
+        self.matricula = None
         if type(cpf) != str:
             raise ValueError("O CPF precisa ser uma string!")
         self.data_nascimento = data_nascimento
@@ -40,9 +41,9 @@ class Aluno:
         self.endereco = endereco
         if type(endereco) != str:
             raise ValueError("O endereço deve ser uma string")
-        self.numero_matricula = numero_matricula
-        if type(numero_matricula) != int:
-            raise ValueError("O número da matrícula deve ser um inteiro (números)")
+
+    def definir_matricula(self, matricula):
+        self.matricula = matricula
 
     def __str__(self):
         return (f'Nome: {self.nome}, Data de Nascimento: {self.data_nascimento}, CPF: {self.cpf}, Telefone: {self.telefone}, Número da Matrícula: {self.numero_matricula}')
@@ -58,11 +59,13 @@ class Aluno:
             print("Log salvo com sucesso!")
 
 class Matricula:
-    data_inicio: str
-    data_vencimento: str
+    data_inicio: datetime
+    data_vencimento: datetime
     status = "Ativa"
 
     def __init__(self):
+        self.data_inicio = datetime.now()
+        self.data_vencimento = self.data_inicio + timedelta(days=30)
         self.ativar_matricula()
 
     def cancelar_matricula(self):
@@ -85,18 +88,20 @@ def cadastrar_aluno():
         data_nascimento = input("Por favor, insira a data de nascimento do novo aluno (aaaa-mm-dd): ")
         telefone = int(input("Por favor, insira o telefone do novo aluno: "))
         endereco = input("Por favor, insira o endereço do novo aluno: ")
-        numero_matricula = int(input("Por favor, insira o número da matrícula do novo aluno: "))
-        novo_aluno = Aluno(nome, cpf, data_nascimento, telefone, endereco, numero_matricula)
+        novo_aluno = Aluno(nome, cpf, data_nascimento, telefone, endereco)
         return novo_aluno
+
+dicionario_alunos = {}
 
 while True:
     print("MENU")
     print("1. Cadastrar novo aluno")
-    print("2. Verificar matrícula")
-    print("3. Alterar matrícula")
-    print("4. Autorizar entrada")
-    print("5. Registrar saída")
-    print("6. Finalizar")
+    print("2. Criar matrícula")
+    print("3. Verificar matrícula")
+    print("4. Alterar matrícula")
+    print("5. Autorizar entrada")
+    print("6. Registrar saída")
+    print("7. Finalizar")
 
     try:
         opcao_inicial = int(input("Digite a opção desejada: "))
@@ -105,6 +110,16 @@ while True:
         continue
     if opcao_inicial == 1:
         novo_aluno = cadastrar_aluno()
+        print(novo_aluno)
+        dicionario_alunos[novo_aluno.cpf] = novo_aluno
     elif opcao_inicial == 2:
-        
+        verificar_aluno = input("Digite aqui o CPF do aluno: ")
+        if verificar_aluno not in dicionario_alunos:
+            print("Este aluno não está cadastrado na academia!")
+        elif
 
+    elif opcao_inicial == 3:
+        verificar_aluno = input("Digite aqui o CPF do aluno: ")
+        if verificar_aluno not in dicionario_alunos:
+            print("Este aluno não está cadastrado na academia!")
+        elif 
