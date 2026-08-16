@@ -78,7 +78,7 @@ class Matricula:
 
     def ativar_matricula(self):
         self.status = "Ativa"
-        return "A matrícula está ativa!"
+        return "A matrícula foi ativada com sucesso!"
     
 
 def cadastrar_aluno():
@@ -99,7 +99,7 @@ while True:
     print("2. Criar matrícula")
     print("3. Verificar matrícula")
     print("4. Alterar matrícula")
-    print("5. Auturizar entrada")
+    print("5. Autorizar entrada")
     print("6. Registrar saída")
     print("7. Finalizar")
 
@@ -119,7 +119,7 @@ while True:
         else:
             novo_aluno = Matricula()
             novo_aluno.ativar_matricula()
-            print(f'A matrícula foi ativada com sucesso!')
+            print("Matrícula ativada com sucesso!")
     elif opcao_inicial == 3:
         verificar_cpf_aluno = input("Digite aqui o CPF do aluno: ")
         if verificar_cpf_aluno not in dicionario_alunos:
