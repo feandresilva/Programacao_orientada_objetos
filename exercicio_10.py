@@ -46,7 +46,7 @@ class Aluno:
         self.matricula = matricula
 
     def __str__(self):
-        return (f'Nome: {self.nome}, Data de Nascimento: {self.data_nascimento}, CPF: {self.cpf}, Telefone: {self.telefone}, Número da Matrícula: {self.numero_matricula}')
+        return (f'Nome: {self.nome}, Data de Nascimento: {self.data_nascimento}, CPF: {self.cpf}, Telefone: {self.telefone}, Endereço: {self.endereco}')
 
     def registrar_entrada(self):
         with open("registro_atividade_academia.log", "a") as f:
@@ -99,7 +99,7 @@ while True:
     print("2. Criar matrícula")
     print("3. Verificar matrícula")
     print("4. Alterar matrícula")
-    print("5. Autorizar entrada")
+    print("5. Auturizar entrada")
     print("6. Registrar saída")
     print("7. Finalizar")
 
@@ -110,16 +110,26 @@ while True:
         continue
     if opcao_inicial == 1:
         novo_aluno = cadastrar_aluno()
-        print(novo_aluno)
         dicionario_alunos[novo_aluno.cpf] = novo_aluno
+        print(novo_aluno)
     elif opcao_inicial == 2:
-        verificar_aluno = input("Digite aqui o CPF do aluno: ")
-        if verificar_aluno not in dicionario_alunos:
+        verificar_cpf_aluno = input("Digite aqui o CPF do aluno: ")
+        if verificar_cpf_aluno not in dicionario_alunos:
             print("Este aluno não está cadastrado na academia!")
-        elif
-
+        else:
+            novo_aluno = Matricula()
+            novo_aluno.ativar_matricula()
+            print(f'A matrícula foi ativada com sucesso!')
     elif opcao_inicial == 3:
-        verificar_aluno = input("Digite aqui o CPF do aluno: ")
-        if verificar_aluno not in dicionario_alunos:
+        verificar_cpf_aluno = input("Digite aqui o CPF do aluno: ")
+        if verificar_cpf_aluno not in dicionario_alunos:
             print("Este aluno não está cadastrado na academia!")
-        elif 
+        else:
+            if dicionario_alunos[novo_aluno.cpf] == "Ativa":
+                print("Entrada liberada!")
+            else:
+                print("Entrada não autorizada!")
+    
+
+
+ 
