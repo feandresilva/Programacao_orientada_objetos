@@ -125,10 +125,10 @@ while True:
         if verificar_cpf_aluno not in dicionario_alunos:
             print("Este aluno não está cadastrado na academia!")
         else:
-            if dicionario_alunos[novo_aluno.cpf] == "Ativa":
-                print("Entrada liberada!")
+            if dicionario_alunos[novo_aluno.status] == "Ativa":
+                print("A matrícula está ativa!")
             else:
-                print("Entrada não autorizada!")
+                print("A matrícula não está ativa!")
     
 
 
