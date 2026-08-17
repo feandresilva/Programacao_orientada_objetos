@@ -128,11 +128,41 @@ while True:
             print("Este aluno não está cadastrado na academia!")
         elif aluno.matricula.status == "Ativa":
             print("A matrícula está ativa!")
-            print(f'Matrícula iniciada: {aluno.matricula.data_inicio}')
+            print(f'Matrícula iniciada em: {aluno.matricula.data_inicio}')
             print(f'Data de vencimento: {aluno.matricula.data_vencimento}')
+        elif aluno.matricula.status == "Cancelada":
+            print("A matrícula está cancelada!")
+        elif aluno.matricula.status == "Inadimplente":
+            print("A matrícula está inadimplente!")
+    elif opcao_inicial == 4:
+        verificar_cpf_aluno = input("Digite aqui o CPF do aluno: ")
+        aluno = dicionario_alunos.get(verificar_cpf_aluno)
+        if not aluno:
+            print("Este aluno não está cadastrado na academia!")
         else:
-            print("A matrícula não está ativa!")
-    
-
-
- 
+            print(f'O status da matrícula é: {aluno.matricula.status}')
+            decisao_matricula = input("Digite o novo status da matrícula: ").strip().capitalize()
+            if decisao_matricula == "Ativa":
+                aluno.matricula.ativar_matricula()
+                print("O status da matrícula foi modificado com sucesso!")
+            elif decisao_matricula == "Inadimplente":
+                aluno.matricula.matricula_inadimplente()
+                print("O status da matrícula foi modificado com sucesso!")
+            elif decisao_matricula == "Cancelada":
+                aluno.matricula.cancelar_matricula()
+                print("O status da matrícula foi modificado com sucesso!")
+            else:
+                print("Opção inválida! Tente novamente")
+                continue
+    elif opcao_inicial == 5:
+        verificar_cpf_aluno = input("Digite aqui o CPF do aluno: ")
+        aluno = dicionario_alunos.get(verificar_cpf_aluno)
+        if not aluno:
+            print("Este aluno não está cadastrado na academia!")
+        else:
+            print(f'Esse é o status da matrícula deste aluno: {aluno.matricula.status}')
+            if aluno.matricula.status == "Ativa":
+                print("Entrada autorizada!")
+                aluno.matricula.registrar_entrada()
+            else:
+                print("Entrada não permitida!")
