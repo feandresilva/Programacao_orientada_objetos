@@ -117,18 +117,21 @@ while True:
         if verificar_cpf_aluno not in dicionario_alunos:
             print("Este aluno não está cadastrado na academia!")
         else:
-            novo_aluno = Matricula()
-            novo_aluno.ativar_matricula()
+            aluno = dicionario_alunos[verificar_cpf_aluno]
+            aluno.definir_matricula(Matricula())
+            aluno.matricula.ativar_matricula()
             print("Matrícula ativada com sucesso!")
     elif opcao_inicial == 3:
         verificar_cpf_aluno = input("Digite aqui o CPF do aluno: ")
-        if verificar_cpf_aluno not in dicionario_alunos:
+        aluno = dicionario_alunos.get(verificar_cpf_aluno)
+        if not aluno:
             print("Este aluno não está cadastrado na academia!")
+        elif aluno.matricula.status == "Ativa":
+            print("A matrícula está ativa!")
+            print(f'Matrícula iniciada: {aluno.matricula.data_inicio}')
+            print(f'Data de vencimento: {aluno.matricula.data_vencimento}')
         else:
-            if dicionario_alunos[novo_aluno.status] == "Ativa":
-                print("A matrícula está ativa!")
-            else:
-                print("A matrícula não está ativa!")
+            print("A matrícula não está ativa!")
     
 
 
