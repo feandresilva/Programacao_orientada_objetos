@@ -176,3 +176,6 @@ while True:
         else:
             print("Saída registrada!")
             aluno.registrar_saida()
+    elif opcao_inicial == 7:
+        print("O sistema foi encerrado com sucesso!")
+        break
