@@ -55,7 +55,7 @@ class Aluno:
 
     def registrar_saida(self):
         with open("registro_atividade_academia.log", "a") as f:
-            f.write(f'{datetime.now()}, o aluno {self.nome}, dono do CPF {self.CPF}, saiu da academia\n')
+            f.write(f'{datetime.now()}, o aluno {self.nome}, dono do CPF {self.cpf}, saiu da academia.\n')
             print("Log salvo com sucesso!")
 
 class Matricula:
@@ -168,3 +168,11 @@ while True:
                 print("Entrada não autorizada! Matrícula inadimplente.")
             else:
                 print("Entrada não permitida!")
+    elif opcao_inicial == 6:
+        verificar_cpf_aluno = input("Digite aqui o CPF do aluno: ")
+        aluno = dicionario_alunos.get(verificar_cpf_aluno)
+        if not aluno:
+            print("Este aluno não está cadastrado na academia!")
+        else:
+            print("Saída registrada!")
+            aluno.registrar_saida()
