@@ -50,12 +50,12 @@ class Aluno:
 
     def registrar_entrada(self):
         with open("registro_atividade_academia.log", "a") as f:
-            f.write(f'{datetime.now()}, o aluno {self.nome}, matrícula nº{self.numero_matricula}, entrou na academia.\n')
+            f.write(f'{datetime.now()}, o aluno {self.nome}, dono do CPF {self.cpf}, entrou na academia.\n')
             print("Log salvo com sucesso!")
 
     def registrar_saida(self):
         with open("registro_atividade_academia.log", "a") as f:
-            f.write(f'{datetime.now()}, o aluno {self.nome}, matrícula nº {self.numero_matricula}, saiu da academia\n')
+            f.write(f'{datetime.now()}, o aluno {self.nome}, dono do CPF {self.CPF}, saiu da academia\n')
             print("Log salvo com sucesso!")
 
 class Matricula:
@@ -160,9 +160,11 @@ while True:
         if not aluno:
             print("Este aluno não está cadastrado na academia!")
         else:
-            print(f'Esse é o status da matrícula deste aluno: {aluno.matricula.status}')
+            print(f'Esse é o status da matrícula de {aluno.nome}: {aluno.matricula.status}')
             if aluno.matricula.status == "Ativa":
                 print("Entrada autorizada!")
-                aluno.matricula.registrar_entrada()
+                aluno.registrar_entrada()
+            elif aluno.matricula.status == "Ativa" and aluno.matricula.data_vencimento > datetime.now():
+                print("Entrada não autorizada! Matrícula inadimplente.")
             else:
                 print("Entrada não permitida!")
