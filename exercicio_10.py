@@ -94,6 +94,10 @@ def cadastrar_aluno():
 
 dicionario_alunos = {}
 
+def salvar_lista_alunos():
+    with open('lista_alunos.pickle', 'wb') as f:
+        pickle.dump(dicionario_alunos, f, pickle.HIGHEST_PROTOCOL)
+
 usuario = "professor_01"
 senha = "senha123"
 
@@ -197,5 +201,7 @@ while True:
             print("Saída registrada!")
             aluno.registrar_saida()
     elif opcao_inicial == 7:
-        print("O sistema foi encerrado com sucesso!")
+        salvar_lista_alunos()
+        print("A lista de alunos foi salva com sucesso!")
+        print("Sistema encerrado!")
         break
