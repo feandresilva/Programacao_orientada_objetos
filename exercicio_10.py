@@ -93,6 +93,10 @@ def cadastrar_aluno():
 
 dicionario_alunos = {}
 
+usuario = "professor_01"
+senha = "senha123"
+
+
 while True:
     print("MENU")
     print("1. Cadastrar novo aluno")
@@ -109,6 +113,14 @@ while True:
         print("Por favor, insira um valor válido!")
         continue
     if opcao_inicial == 1:
+        print("Essa ação exige usuário e senha!")
+        pedindo_usuario = input("Usuário: ")
+        pedindo_senha = input("Senha: ")
+        if pedindo_senha != senha or pedindo_usuario != usuario:
+            print("Erro! Usuário ou senha estão incorretos. Tente novamente!")
+            continue
+        else:
+            print("Login feito com sucesso! Continue o cadastro do novo aluno!")
         novo_aluno = cadastrar_aluno()
         dicionario_alunos[novo_aluno.cpf] = novo_aluno
         print(novo_aluno)
