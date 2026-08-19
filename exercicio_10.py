@@ -113,7 +113,7 @@ while True:
         print("Por favor, insira um valor válido!")
         continue
     if opcao_inicial == 1:
-        print("Essa ação exige usuário e senha!")
+        print("Essa ação exige autenticação! Insira usuário e senha!")
         pedindo_usuario = input("Usuário: ")
         pedindo_senha = input("Senha: ")
         if pedindo_senha != senha or pedindo_usuario != usuario:
