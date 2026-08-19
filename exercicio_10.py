@@ -23,6 +23,7 @@
 import pickle
 from datetime import date
 from datetime import datetime, timedelta
+import getpass
 
 class Aluno:
 
@@ -96,6 +97,17 @@ dicionario_alunos = {}
 usuario = "professor_01"
 senha = "senha123"
 
+def autenticar():
+    while True:
+        print("Essa ação exige autenticação! Insira usuário e senha!")
+        pedindo_usuario = input("Usuário: ")
+        pedindo_senha = getpass.getpass("Senha: ", echo_char="*")
+        if pedindo_senha != senha or pedindo_usuario != usuario:
+            print("Erro! Usuário ou senha estão incorretos. Tente novamente!")
+        else:
+            print("Login feito com sucesso!")
+            break
+
 
 while True:
     print("MENU")
@@ -113,14 +125,7 @@ while True:
         print("Por favor, insira um valor válido!")
         continue
     if opcao_inicial == 1:
-        print("Essa ação exige autenticação! Insira usuário e senha!")
-        pedindo_usuario = input("Usuário: ")
-        pedindo_senha = input("Senha: ")
-        if pedindo_senha != senha or pedindo_usuario != usuario:
-            print("Erro! Usuário ou senha estão incorretos. Tente novamente!")
-            continue
-        else:
-            print("Login feito com sucesso! Continue o cadastro do novo aluno!")
+        autenticar()
         novo_aluno = cadastrar_aluno()
         dicionario_alunos[novo_aluno.cpf] = novo_aluno
         print(novo_aluno)
@@ -147,6 +152,7 @@ while True:
         elif aluno.matricula.status == "Inadimplente":
             print("A matrícula está inadimplente!")
     elif opcao_inicial == 4:
+        autenticar()
         verificar_cpf_aluno = input("Digite aqui o CPF do aluno: ")
         aluno = dicionario_alunos.get(verificar_cpf_aluno)
         if not aluno:
@@ -167,20 +173,22 @@ while True:
                 print("Opção inválida! Tente novamente")
                 continue
     elif opcao_inicial == 5:
+        autenticar()
         verificar_cpf_aluno = input("Digite aqui o CPF do aluno: ")
         aluno = dicionario_alunos.get(verificar_cpf_aluno)
         if not aluno:
             print("Este aluno não está cadastrado na academia!")
         else:
             print(f'Esse é o status da matrícula de {aluno.nome}: {aluno.matricula.status}')
-            if aluno.matricula.status == "Ativa":
+            if aluno.matricula.status == "Ativa" and aluno.matricula.data_vencimento < datetime.now():
+                print("Entrada não autorizada! Matrícula inadimplente.")
+            elif aluno.matricula.status == "Ativa":
                 print("Entrada autorizada!")
                 aluno.registrar_entrada()
-            elif aluno.matricula.status == "Ativa" and aluno.matricula.data_vencimento > datetime.now():
-                print("Entrada não autorizada! Matrícula inadimplente.")
             else:
                 print("Entrada não permitida!")
     elif opcao_inicial == 6:
+        autenticar()
         verificar_cpf_aluno = input("Digite aqui o CPF do aluno: ")
         aluno = dicionario_alunos.get(verificar_cpf_aluno)
         if not aluno:
