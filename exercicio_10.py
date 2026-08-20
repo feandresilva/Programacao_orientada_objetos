@@ -98,15 +98,16 @@ def salvar_lista_alunos():
     with open('lista_alunos.pickle', 'wb') as f:
         pickle.dump(dicionario_alunos, f, pickle.HIGHEST_PROTOCOL)
 
-usuario = "professor_01"
-senha = "senha123"
+dicionario_autenticacao = {"usuario1": "senha123", "usuario2": "senha456", "dono": "123"}
 
 def autenticar():
     while True:
         print("Essa ação exige autenticação! Insira usuário e senha!")
         pedindo_usuario = input("Usuário: ")
         pedindo_senha = getpass.getpass("Senha: ", echo_char="*")
-        if pedindo_senha != senha or pedindo_usuario != usuario:
+        autenticacao_usuario = dicionario_autenticacao.get(pedindo_usuario)
+        autenticacao_senha = dicionario_autenticacao.get(pedindo_senha)
+        if not autenticacao_usuario or autenticacao_senha:
             print("Erro! Usuário ou senha estão incorretos. Tente novamente!")
         else:
             print("Login feito com sucesso!")
@@ -162,7 +163,7 @@ while True:
         if not aluno:
             print("Este aluno não está cadastrado na academia!")
         else:
-            print(f'O status da matrícula é: {aluno.matricula.status}')
+            print(f'O status atual da matrícula é: {aluno.matricula.status}')
             decisao_matricula = input("Digite o novo status da matrícula: ").strip().capitalize()
             if decisao_matricula == "Ativa":
                 aluno.matricula.ativar_matricula()
