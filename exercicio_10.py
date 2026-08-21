@@ -105,9 +105,8 @@ def autenticar():
         print("Essa ação exige autenticação! Insira usuário e senha!")
         pedindo_usuario = input("Usuário: ")
         pedindo_senha = getpass.getpass("Senha: ", echo_char="*")
-        autenticacao_usuario = dicionario_autenticacao.get(pedindo_usuario)
-        autenticacao_senha = dicionario_autenticacao.get(pedindo_senha)
-        if not autenticacao_usuario or autenticacao_senha:
+        autenticacao_senha = dicionario_autenticacao.get(pedindo_usuario)
+        if not autenticacao_senha or pedindo_senha != autenticacao_senha:
             print("Erro! Usuário ou senha estão incorretos. Tente novamente!")
         else:
             print("Login feito com sucesso!")
